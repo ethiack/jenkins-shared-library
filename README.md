@@ -165,6 +165,47 @@ pipeline {
 }
 ```
 
+### Example: *Using beacon_id and event_slug parameters*
+
+This example demonstrates how to use the optional parameters for tracking and integration purposes.
+
+```groovy
+@Library("ethiack-library")_
+import groovy.json.JsonSlurper
+
+pipeline {
+    agent any
+    
+    environment {
+        ETHIACK_API_KEY = credentials('ethiack-api-key')
+        ETHIACK_API_SECRET = credentials('ethiack-api-secret')
+    }
+
+    stages {
+        stage('Ethiack Scan') {
+            steps {
+                script {                 
+                    def buildNumber = env.BUILD_NUMBER.toInteger()
+                    def releaseVersion = "v1.2.3"
+                    
+                    // Launch a scan with tracking information
+                    def job = ethiack.launchJob(
+                        "https://example.ethiack.com:443",
+                        buildNumber,  // beacon_id for build tracking
+                        "release-${releaseVersion}" // event_slug for release tracking
+                    )
+                    
+                    def resp = ethiack.awaitJob(job.uuid, Severity.MEDIUM, false)
+                    if(resp.success == false) {
+                        error(resp.message)
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
 
 ### Available commands
 
@@ -180,10 +221,12 @@ A complete list of the available commands is provided below.
 
 > __Description:__ Check if the provided URL is valid and the scan is authorized for the organization.
 >
-> __Signature:__ `Boolean check(String url) {...}`
+> __Signature:__ `Boolean check(String url, Integer beacon_id = null, String event_slug = null, Boolean failOnBadStatus = false) {...}`
 > 
 > __Parameters:__ 
 > - `url`: URL to check
+> - `beacon_id`: Optional beacon ID to associate with the check
+> - `event_slug`: Optional event slug to associate with the check
 > - `failOnBadStatus`: If true, an error will be raised if the operation fails
 >
 > __Returns:__
@@ -202,15 +245,17 @@ A complete list of the available commands is provided below.
 
 > __Description:__ Launch a new job for the provided URL if the provided URL is valid and the organization has scan minutes available.
 >
-> __Signature:__ `Map launchJob(String url, Boolean failOnBadStatus = true) {...}`
+> __Signature:__ `Map launchJob(String url, Integer beacon_id = null, String event_slug = null, Boolean failOnBadStatus = true) {...}`
 > 
 > __Parameters:__ 
 > - `url`: URL to scan.
+> - `beacon_id`: Optional beacon ID to associate with the job
+> - `event_slug`: Optional event slug to associate with the job
 > - `failOnBadStatus`: If `true`, an error will be raised if the operation fails
 > 
 > __Returns:__
 > 
-> - Map object with the information abou the launched job
+> - Map object with the information about the launched job
 
 </details>
 

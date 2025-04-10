@@ -1,3 +1,13 @@
+## [1.1.0](https://github.com/ethiack/jenkins-shared-library/compare/1.0.0...1.1.0) (2025-04-10)
+
+### 🦊 CI/CD
+
+* update commitlint config ([39905ad](https://github.com/ethiack/jenkins-shared-library/commit/39905adbe352cc4c3236999ee4cb98bc416aaa3e))
+
+### 🚀 Features
+
+* add beacon_id and event_slug parameters to shared library ([#2](https://github.com/ethiack/jenkins-shared-library/issues/2)) ([066bc7d](https://github.com/ethiack/jenkins-shared-library/commit/066bc7dbd85f9adec6504352eb79b515eddf14e3))
+
 ## [1.1.0-rc.1](https://github.com/ethiack/jenkins-shared-library/compare/1.0.0...1.1.0-rc.1) (2025-04-08)
 
 ### 🚀 Features

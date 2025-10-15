@@ -16,7 +16,7 @@
 
 <h1>
   <br>
-    <img src="https://raw.githubusercontent.com/ethiack/jenkins-shared-library/main/assets/logo.webp" alt="logo" width="400">
+    <img src="assets/logo.png" alt="logo" width="400">
     <br><br>
     Ethiack Jenkins Shared Library
     <br><br>

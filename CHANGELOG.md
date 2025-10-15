@@ -1,3 +1,9 @@
+## [1.1.2-rc.1](https://github.com/ethiack/jenkins-shared-library/compare/1.1.1...1.1.2-rc.1) (2025-10-15)
+
+### 📔 Docs
+
+* updating logo ([1edddb9](https://github.com/ethiack/jenkins-shared-library/commit/1edddb91d44048bc6fa5fc51a43d23397d43383a))
+
 ## [1.1.1](https://github.com/ethiack/jenkins-shared-library/compare/1.1.0...1.1.1) (2025-08-18)
 
 ### 📔 Docs
